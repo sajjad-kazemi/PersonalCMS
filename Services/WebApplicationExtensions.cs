@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CMSAPI.Middlewares;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace Services.Extensions
 
 
 			app.MapControllers();
+
+			app.UseMiddleware<ModelBindingErrorMiddleware>();
 
 			return app;
 		}

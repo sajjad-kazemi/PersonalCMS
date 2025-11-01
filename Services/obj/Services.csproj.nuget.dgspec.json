@@ -212,6 +212,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.21, )"
+            },
             "Microsoft.AspNetCore.Connections.Abstractions": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -231,6 +235,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
             },
             "Microsoft.AspNetCore.Razor.Language": {
               "target": "Package",
@@ -271,6 +279,10 @@
               "version": "[9.0.10, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[9.0.10, )"
             },

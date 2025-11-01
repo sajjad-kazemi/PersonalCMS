@@ -32,13 +32,20 @@ namespace Services
 		public async Task<List<GetUserResponse>> GetUser(GetUserRequest request)
 		{
 			var query = _context.User.AsQueryable();
+			var hasFilter = false;
 			if(request.Id is not null)
 			{
 				query = query.Where(x => x.Id == request.Id);
+				hasFilter = true;
 			}
 			if (!request.UserName.IsNullOrEmpty())
 			{
 				query = query.Where(x => x.UserName.Contains(request.UserName));
+				hasFilter = true;
+			}
+			if (!hasFilter)
+			{
+				query = query.Take(0);
 			}
 			return await query.Select(x => new GetUserResponse
 			{
