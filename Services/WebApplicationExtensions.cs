@@ -35,7 +35,6 @@ namespace Services.Extensions
 
 			app.UseAuthorization();
 
-
 			app.MapControllers();
 
 			app.UseMiddleware<ModelBindingErrorMiddleware>();

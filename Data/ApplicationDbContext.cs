@@ -9,12 +9,12 @@ namespace Data
 	{
 		private readonly SqlConnection _sqlConnection;
 		public ApplicationDbContext(
-			DbContextOptions options,
+			DbContextOptions<ApplicationDbContext> options,
 			IConfiguration configuration
 			) : base(options)
 		{
 			_sqlConnection = new SqlConnection(configuration.GetConnectionString("CMS"));
 		}
-		public DbSet<User> User { get; set; }
+		public DbSet<User> Users { get; set; }
 	}
 }

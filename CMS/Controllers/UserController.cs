@@ -1,7 +1,9 @@
 ﻿using CMSAPI.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.User;
 using Services;
+using System.Security.Claims;
 
 namespace CMS.Controllers
 {
@@ -16,9 +18,14 @@ namespace CMS.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public async Task<IActionResult> GetCurrentUser()
 		{
-			var response = await _userService.GetCurrentUser();
+			var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+			var response = await _userService.GetUser(new GetUserRequest
+			{
+				Id = userId
+			});
 			return Ok(response);
 		}
 
@@ -29,10 +36,18 @@ namespace CMS.Controllers
 			return Ok(response);
 		}
 
-		[HttpPost("register")]
+		[HttpPost]
 		public async Task<IActionResult> Register(RegisterRequest request)
 		{
-			if(await )
+			var response = await _userService.Register(request);
+			return Ok(response);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginRequest request)
+		{
+			var response = await _userService.Login(request);
+			return Ok(response.Data);
 		}
 	}
 }
